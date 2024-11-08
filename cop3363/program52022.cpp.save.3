@@ -1,0 +1,205 @@
+/*=====================================================================*/
+/* PROGRAM
+   AUTHOR: Gabriel Clyce
+   RECITATION SECTION NUMBER:1
+   RECITATION INSTRUCTOR NAME:collister joshua
+   COURSE: cop3363
+   PROJECT NUMBER: 5
+   DUE DATE:4/5/2022
+   PLATFORM: UNIX OS/g++ compiler
+
+SUMMARY
+
+
+OUTPUT
+
+
+ASSUMPTIONS
+
+*/
+
+//including necessary libraries
+#include<iostream>
+#include<cmath>
+#include<fstream>
+#include<stdlib.h>
+#include<time.h>
+using namespace std;
+
+/* ====================================================================*/ 
+//we will be doing the opeing art in the introduction portion
+
+void Intro()
+{
+cout<<"*****************************************************"<<endl;
+cout<<"*                                                   *"<<endl;
+cout<<"*    Eight Bit Binary Number Manipulator            *"<<endl;
+cout<<"*                                                   *"<<endl;
+cout<<"*****************************************************"<<endl;
+}
+
+
+//=================================================================*/
+//we will now open the file 
+//and preform a check to see if it is the correct file
+//if not then we will ask again after a display message
+
+void openfile(ifstream & inFile)
+{
+string Filename;
+cout<<"Please Enter a Filename: "<<endl;
+cin>>Filename;
+inFile.open(Filename.c_str());
+
+  
+   while(!inFile.is_open())                                                     
+   {
+      cout<<"Incorrect file. Try again: "<<endl;
+      cin>>Filename;
+      inFile.open (Filename.c_str());
+  
+   }
+   cout<<"File has opened succesfully"<<endl; 
+      inFile.close();
+
+}
+
+/*===========================================================*/
+
+
+
+
+
+
+//==================================================================
+
+int* convertstringtoarray(string input, int * arr)
+{
+
+   
+   int j=0;
+   
+ 
+   
+   for(int i=0; i<input.size(); i++)
+{
+     
+      
+      arr[j] = input[i] - 48;
+      
+}     
+   
+
+
+     cout << "arr[] = ";
+
+   for (int i=0; i<input.size(); i++){ 
+     cout<<arr[i]<<" ";
+    
+}
+
+
+   return arr;
+}
+//============================================================
+int exponent(int input)
+{
+   int result =1;
+
+   for (int i=0;i<input;i++)
+   {
+    result*=2;
+   }
+
+
+   return result;
+
+}
+
+
+
+int convert(int arr[])
+{   
+    int result=0;    
+
+
+    for(int i =0; i<sizeof(arr);i++)
+       {
+         if(arr[i]==1)
+         {
+           
+         }
+
+
+       }
+    return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//================================================================
+//our main function will be called here and 
+//we will call our functions here as well
+
+int main()
+{
+    ifstream inFile;
+    typedef int bitstring[8];
+    
+    string test = "10101010";
+    string test1 = "01010101";
+    
+
+    int arrays[8], temporary[8];
+   
+    //intro will print asci art and introduction
+
+    Intro();   
+
+    //open file will allow me to  open and check to see if a file can be opened
+    openfile(inFile);
+  
+    //this will convert a string to a array that can be used for a test value or normal value
+    convertstringtoarray(test,arrays);   
+    
+    //here we will read the command and store it(inFile.read)
+ 
+
+    // 
+    
+    for(int i=0;i<sizeof(arrays);i++)
+     {
+      temporary[i]=arrays[i];
+
+     }
+    
+    cout<<endl;
+
+/*   cout << "test" << endl;
+    for (int i=0;i<sizeof(temporary);i++)
+     {
+       cout<<temporary[i]<<"  ";
+      
+
+   
+     }*/
+
+   
+    
+}
+
+
+
+
+
+

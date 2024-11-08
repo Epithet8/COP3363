@@ -1,0 +1,28 @@
+//start with fsu id then iosteams 
+//Gabriel Clyce 
+#include<iostream>
+using namespaces std;
+
+int main()
+{//declare constant variables
+// storing variables 
+//input from user
+// print those vcalues taken as inoput
+//calculate ecpected books to sell using the if else atatement
+if(state=="N" && importance=="R")
+{
+	}
+		expectedtosell=expected_enroll * percentage;
+	}
+	else if()
+	
+	bookstoorder=ceil(expectedtosell)-volumeonHand;
+	bookstoorder=static_cast<int>(bookstoorder);
+	
+	if(bookstoorder<0)
+		bookstoreorder=0;
+	//print estimation summary of books to order
+	
+	if(bookstoorder=0)
+	{
+	}}

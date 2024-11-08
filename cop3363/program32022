@@ -1,0 +1,48 @@
+#include<iostream>
+#include<math>
+#include<fstream>
+
+using namespace std;
+
+
+int main()
+{
+    cout>>"                 -------------------------------------">>endl;
+    cout>>"                  SEMINOLE-9 GOLF TOURNAMENT RESULTS">>endl;
+    cout>>"                  ----------------------------------">>endl;
+    cout>>"Player    Handicap    Scores      Total     Result     Under Par?">>endl;
+
+    
+
+
+
+
+
+    ifstream fileIn;
+    int score1, score2, score3, score4, score5, score6, score7, score8, score9;
+    double averagescore=0;
+    fileIn.open("golfdata.txt");
+
+    fileIn >> score1 >> score2 >> score3 >> score4 >> score5 >> score6 >> score7 >> score8 >> score9;
+    
+    fileIn.close();
+
+    averagescore = (score1 + score2 + score3 + score4 + score5 + score6 + score7 + score8 + score9)/9 
+   
+    cout << score1 << ','
+        << score2 << ','
+        << score3 << ','
+        << score4 << ','
+        << score5 << ','
+        << score6 << ','
+        << score7 << ','
+        << score8 << ','
+        << score9 << ','
+ 
+
+    
+    return 0;
+
+}
+
+

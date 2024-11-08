@@ -1,0 +1,410 @@
+/*=====================================================================*/
+/* PROGRAM
+   AUTHOR: Gabriel Clyce
+   RECITATION SECTION NUMBER:1
+   RECITATION INSTRUCTOR NAME:collister joshua
+   COURSE: cop3363
+   PROJECT NUMBER: 5
+   DUE DATE:4/5/2022
+   PLATFORM: UNIX OS/g++ compiler
+
+SUMMARY
+we will output bitwise operations using operands we read from
+a file then checking to see the charectors and preforming the
+necassary function
+
+OUTPUT
+our output will be a table of five collums that have the
+commands, operands 1 and 2 along with the shift and results.
+
+
+ASSUMPTIONS
+we can assume data files are correct but must be able to be 
+opened as small.txt or binary.txt
+*/
+
+//including necessary libraries
+#include<iostream>
+#include<cmath>
+#include<fstream>
+#include<stdlib.h>
+#include<time.h>
+using namespace std;
+
+
+typedef int bitstring[8];
+
+//============================================================
+/* here we will make our exponent function to manipulate our binary operations and 
+make the necassary calculations
+*/
+
+int exponent(int input)
+   {
+   int result =1;
+
+   for (int i=0;i<input;i++)
+   {
+    result*=2;
+   }
+   
+
+   return result;
+
+}
+
+
+
+
+
+/* ====================================================================*/ 
+//we will be doing the opeing art in the introduction portion
+void Intro()
+{
+cout<<"*****************************************************"<<endl;
+cout<<"*                                                   *"<<endl;
+cout<<"*    Eight Bit Binary Number Manipulator            *"<<endl;
+cout<<"*                                                   *"<<endl;
+cout<<"*****************************************************"<<endl;
+}
+
+
+//=================================================================*/
+//we will now open the file 
+//and preform a check to see if it is the correct file
+//if not then we will ask again after a display message
+//==============================================================
+
+
+//openfile function
+//we will read the first char and assign a function
+void openfile(ifstream & inFile)
+{
+string Filename;
+cout<<"Please Enter a Filename: "<<endl;
+cin>>Filename;
+inFile.open(Filename.c_str());
+
+  
+   while(!inFile.is_open())                                                     
+   {
+      cout<<"Incorrect file. Try again: "<<endl;
+      cin>>Filename;
+      inFile.open (Filename.c_str());
+  
+   }
+   cout<<"File has opened succesfully"<<endl; 
+      
+ 
+}
+
+
+
+
+//addeed code below on 4/5/2022
+/*===========================================================*/
+//we will do our not conversion here
+void notconversion(bitstring& notout,bitstring& arr)
+{
+  for(int i=0;i<8;i++)
+  {
+     if(arr[i]==1)
+     { 
+        notout[i]=0;
+     }
+     else
+     {
+        notout[i]=1;
+     }
+  }
+}
+
+
+//addeed code below on 4/5/2022
+/*===========================================================*/
+//we will do our and conversion here using two for loops
+void andconversion(bitstring& c,int*a,int*b)
+{
+ 
+  for(int i=0;i<8;i++)
+  {
+     if(a[i]==1 && b[i]==1)
+     { 
+        c[i]=1;
+       
+     }
+     else
+     {
+        c[i]=0;
+     }
+  }
+  
+}
+//============================================================
+//===============================================================
+int convertfunction(bitstring number)
+{   
+   int baseline=0;
+   for(int i=0;i<8;i++)
+   {  
+      if(number[i]==1)
+      {
+      baseline = baseline+exponent(7-i);
+      }
+     
+   }
+   return baseline;
+}
+
+
+
+
+
+
+
+//==================================================================
+/*
+here we will set our conversion for strings into arrays using input.size and 
+string input
+
+
+*/
+int* convertstringtoarray(string input, int * arr)
+{ 
+   for(int i=0; i<input.size(); i++)
+{      
+      arr[i] = input[i] - 48;
+      
+}    
+//sets a space inbetween each number
+//   for (int i=0; i<input.size(); i++){ 
+  //   cout<<arr[i]<<" ";
+    
+//}
+
+
+   return arr;
+}
+//=================================================================================
+int convert(int arr[])
+{   
+    int result=0;    
+
+
+    for(int i =0; i<sizeof(arr);i++)
+       {
+         if(arr[i]==1)
+         {
+           
+         }
+
+
+       }
+    return result;
+}
+
+
+
+//===================================================================================
+//lshift will be coded here
+int* lshiftconversion(bitstring shift,int*lshift)
+{
+   int i;
+   int n;
+   for(i=0;i<8;i++)
+   {
+     if(1<n)
+       (lshift[1]=0);
+     else if (n<i<(8-n))
+     {    
+         (lshift[1-3]=lshift[1]);
+         (lshift[i]=0);
+     }
+
+     else
+         (lshift[i]=0);
+     
+   }
+   return lshift;
+}
+//========================================================================
+void printarray(bitstring arrays){
+  for(int i  = 0; i < 8; i++)
+    cout << arrays[i];
+}
+
+//===================================================================================
+//or conversion will take place here
+int orconversion(bitstring &orresult,int*or1,int*or2)
+{   
+    int i;
+    int oranswer=0;
+    for(i=0; i<8 ;i++)
+    { 
+     if(or1[1]==1)
+     {
+       (or1[i]=1);
+     }
+     else if(or2[i]==1)
+     {
+       (or1[i]=0);
+    
+     }
+    }
+   cout<<"        ";
+   cout<<endl; 
+   return oranswer;
+}
+
+
+//================================================================
+//our main function will be called here and 
+//we will call our functions here as well
+//we will also initalize a few variables for each command
+int main()
+{
+ 
+    int notarr[8];
+    int andarr[8];
+    int orarr[8];
+   
+    ifstream inFile;
+    string linereader="";
+    string test="";
+    string test1="";
+    
+    
+  //  int arrays[8], temporary;
+    bitstring arrays,arrays1, temporary,arr,arr1,arrresult;
+    
+    Intro();   
+    openfile(inFile);
+    cout<<"COMMAND       OPPERAND#1        OPERAND#2        SHIFT         RESULT"<<endl;
+    cout<<"---------------------------------------------------------------------"<<endl;
+   
+    //dowhile loop for iterating everyline in the file to check for command
+    //and will assign a function to that command 
+  
+    
+      
+    do
+     {
+      
+      
+     inFile>>linereader; 
+     
+     if(linereader=="NOT")
+       {
+        inFile>>test;
+          
+        convertstringtoarray(test,arrays);
+        notconversion(temporary,arrays);
+        cout << "NOT"<<"            ";
+        printarray(arrays);
+        cout << "                                 ";
+        printarray(temporary);
+        cout << endl;
+       }
+     else if (linereader=="AND")
+       {
+        inFile>>test>>test1;
+        convertstringtoarray(test,arrays); 
+        convertstringtoarray(test1,arrays1);
+        andconversion(arrresult,arrays,arrays1);
+        cout<<"AND"<<"              ";
+        printarray(arrays);
+        cout<<"               ";
+        printarray(arrays1); 
+        cout<<"              ";
+        printarray(arrresult);
+        cout<<endl;
+       
+       }
+     else if (linereader=="OR")
+       {
+        inFile>>test>>test1;
+        convertstringtoarray(test,arrays);
+        convertstringtoarray(test1,arrays1);
+        orconversion(arrresult,arrays,arrays1);
+        cout<<"OR"<<"            ";
+        printarray(arrays);
+        cout<<"             ";
+        printarray(arrays1);
+        cout<<"                       ";
+        printarray(arrresult);
+        cout<<endl;
+
+       }
+     else if (linereader=="CONVERT")
+      {
+        inFile>>test;
+        convertstringtoarray(test,arrays);
+        
+        cout << "CONVERT"<<"             ";
+        printarray(arrays); 
+        cout << "                   ";
+        cout<<convertfunction(arrays);             
+        cout << endl;
+
+      } 
+     else if(linereader=="LSHIFT")
+      {
+        inFile>>test>>test1;
+        
+        convertstringtoarray(test,arrays);
+        
+        lshiftconversion(arrresult,arrays);
+        cout<<"LSHIFT"<<"         ";
+        printarray(arrays);
+        cout<<"              ";
+        cout<<test1<<"                      ";
+        printarray(arrresult);
+        
+        cout<<endl;
+
+      }
+     else
+     {
+         cout<<"---ERROR! Invlaid Command ---"<<endl;
+     }
+     cout<<endl;
+     
+  }
+     while(inFile);
+  
+   inFile.clear();
+   inFile.close();
+
+   cout<<"Execution Completed."<<endl;
+  
+    
+   
+
+
+//strings to bitstring
+    string test2="01011101";
+    string test3="00110010";
+    bitstring arr2, arr3;
+    
+      
+
+   
+  
+
+
+   //1. open file 
+   //2. read first line
+   //3. find command
+   //4. find operands depends
+   //5. convert to bitstring
+   //6. call command with correct operands
+   //7. display result in formate
+   //8. loop till end of file from step 2
+   //9. closefile
+}
+
+
+
+
+
+

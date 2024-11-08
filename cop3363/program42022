@@ -1,0 +1,53 @@
+#include<iostream>
+#include<cmath>
+#include<fstream>
+using namespace std;
+
+ifstream fileIn;
+string filename;
+
+
+//prints opening screen for program and the first prompted question for the file name
+
+
+
+
+void Printintro() 
+{
+cout<<*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*<<endl;
+cout<<"Welcome to Tallahassee Idol! Where stars are born!!!"<<endl;
+cout<<*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*<<endl; 
+
+}
+ 
+void OpenFile()
+{
+
+cout<<"Enter the name of the data file (no blanks!) ->"<<endl;
+cin>>filename>>endl;
+while(!filename)
+fileIn.open(filename.c_str());
+}
+
+
+
+int main ()
+{
+
+}
+
+void GetJudgeScore()
+{
+}
+
+void GetPhoneData()
+{
+}
+
+void FindWinner()
+{
+}
+
+void PrintClosing()
+{
+}
